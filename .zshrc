@@ -45,7 +45,7 @@ mkdir -p $(dirname $HISTFILE)
 
 # Set the shell prompt
 export PROMPT='
-${_current_dir}%$(git_prompt_info)
+${_current_dir}$(git_prompt_info)
 %{$fg[$CARETCOLOR]%}▶%{$resetcolor%} '
 
 # Alias git commands

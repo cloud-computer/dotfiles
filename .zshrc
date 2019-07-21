@@ -50,7 +50,7 @@ ${_current_dir}$(git_prompt_info)
 
 # Alias git commands
 alias a="git a"
-alias ad="git added"
+alias aa="git aa"
 alias ap="git ap"
 alias cam="git cam"
 alias camp="git camp"
@@ -67,14 +67,14 @@ alias pu="git pu"
 alias s="git s"
 
 # Alias common commands to better alternatives
+alias apt-search="apt-cache search"
+alias apt-ls="dpkg-query -L"
 alias ascii="figlet -f slant -m 2"
 alias c=cat
 alias cat=bat
 alias e="docker ps --format '{{.Names}}' | f --bind \"enter:execute(docker exec -it {} zsh </dev/tty >/dev/tty 2>&1)+abort\""
 alias f="fzf --height 5% --reverse"
 alias g=grep
-alias gg=lazygit
-alias imgur=imgur-uploader
 alias l="ls -lah"
 alias pastebin="curl -F 'f:1=<-' ix.io"
 alias ptree="ps xf -o pid,ppid,pgrp,euser,args"

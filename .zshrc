@@ -13,8 +13,8 @@ antigen bundle docker
 antigen bundle docker-compose
 antigen bundle fzf
 antigen bundle git
-antigen bundle git-auto-fetch
 antigen bundle gnu-utils
+antigen bundle gpg-agent
 antigen bundle ubuntu
 
 # Bundles from third parties
@@ -50,8 +50,11 @@ ${_current_dir}$(git_prompt_info)
 
 # Alias git commands
 alias a="git a"
+alias b="git b"
 alias aa="git aa"
 alias ap="git ap"
+alias bd="git bd"
+alias ca="git ca"
 alias cam="git cam"
 alias camp="git camp"
 alias cln="git cln"
@@ -60,8 +63,11 @@ alias co="git co"
 alias cob="git cob"
 alias cop="git cp"
 alias d="git d"
+alias db="git db"
+alias dbl="git dbl"
 alias ll="git l"
 alias p="git p"
+alias pf="git pf"
 alias pp="git pp"
 alias pu="git pu"
 alias s="git s"
@@ -79,7 +85,7 @@ alias l="ls -lah"
 alias pastebin="curl -F 'f:1=<-' ix.io"
 alias ptree="ps xf -o pid,ppid,pgrp,euser,args"
 alias scripts="cat package.json | jq .scripts"
-alias t="tmux -S $CLOUD_COMPUTER_TMUX/.tmux.sock"
+alias t=tmux
 alias tn="TMUX= t new-session -s on-demand-$(date +%M%S) -t"
 alias ts="t display-message -p '#S'"
 alias tk="t kill-session -t"
@@ -98,3 +104,22 @@ alias x='xargs -n 1 -I @'
 
 # Load jump shell
 eval "$(jump shell zsh)"
+
+# Unlock ssh private key
+eval `keychain --eval id_rsa 2>/dev/null`
+
+login () {
+  # Clone secrets if not already cloned
+  if [ ! -f $HOME/.ssh-private/id_rsa ]; then
+    . $HOME/.config/scripts/clone-secrets.sh
+    . $HOME/.zshenv
+  fi
+}
+
+logout () {
+  $HOME/.config/scripts/clean-secrets.sh
+}
+
+transfer () {
+  curl -# -F "file=@$1" https://0x0.st
+}

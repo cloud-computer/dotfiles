@@ -1,6 +1,6 @@
 [alias]
     a = add
-    added = diff --cached
+    aa = diff --cached
     ap = add -p
 
     # list branches sorted by last modified
@@ -8,7 +8,7 @@
     bc = "!f() { git branch --merged | egrep -v \"(^\\*|master|staging)\" | xargs git branch -d; }; f"
     bls = ls-remote --heads
     br = for-each-ref --format='%(refname:short) -> %(upstream:short)' refs/heads
-    bd = branch -D
+    brm = branch -D
 
     cln = clean -df
 
@@ -25,6 +25,9 @@
     camp = "!f() { git commit -a -m \"$1\"; git push; }; f"
 
     d = diff
+    dashboard = "!f() { /usr/local/bin/grv -repoFilePath /stemn/stemn-backend \"$@\"; }; f"
+    db = "!git diff $(git merge-base $(git branch | grep \\* | cut -d ' ' -f2) master) $(git branch | grep \\* | cut -d ' ' -f2)"
+    dbl = "!git diff --name-only $(git merge-base $(git branch | grep \\* | cut -d ' ' -f2) master) $(git branch | grep \\* | cut -d ' ' -f2)"
     ds = diff --stat
 
     # provide help by listing aliases
@@ -34,7 +37,7 @@
     ll = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
     lll = log --oneline --graph --all --decorate --abbrev-commit
 
-    p = pull --rebase
+    p = "!git fetch; git pull --rebase"
     pu = push
     pp = "!git pull --no-edit; git push"
 
@@ -50,6 +53,7 @@
 
     r = remote -v
     ra = "!f() { git remote add $1 git@github.com:$2.git; }; f" # usage: git ra remote-name username/repository | adds a remote pointing to a repository
+    rbm = "!git rebase -i $(git merge-base $(git branch | grep \\* | cut -d ' ' -f2) master)"
 
     s = status
     su = status --untracked-files=no

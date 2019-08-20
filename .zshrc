@@ -85,7 +85,7 @@ alias l="ls -lah"
 alias pastebin="curl -F 'f:1=<-' ix.io"
 alias ptree="ps xf -o pid,ppid,pgrp,euser,args"
 alias scripts="cat package.json | jq .scripts"
-alias t=tmux
+alias t="tmux -S $CLOUD_COMPUTER_TMUX/.tmux.sock"
 alias tn="TMUX= t new-session -s on-demand-$(date +%M%S) -t"
 alias ts="t display-message -p '#S'"
 alias tk="t kill-session -t"

@@ -108,18 +108,6 @@ eval "$(jump shell zsh)"
 # Unlock ssh private key
 eval `keychain --eval id_rsa 2>/dev/null`
 
-login () {
-  # Clone secrets if not already cloned
-  if [ ! -f $HOME/.ssh-private/id_rsa ]; then
-    . $HOME/.config/scripts/clone-secrets.sh
-    . $HOME/.zshenv
-  fi
-}
-
-logout () {
-  $HOME/.config/scripts/clean-secrets.sh
-}
-
 transfer () {
   curl -# -F "file=@$1" https://0x0.st
 }

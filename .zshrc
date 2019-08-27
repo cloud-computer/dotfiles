@@ -81,6 +81,7 @@ alias cat=bat
 alias e="docker ps --format '{{.Names}}' | f --bind \"enter:execute(docker exec -it {} zsh </dev/tty >/dev/tty 2>&1)+abort\""
 alias f="fzf --height 5% --reverse"
 alias g=grep
+alias gottyc="gotty-client --v2"
 alias l="ls -lah"
 alias pastebin="curl -F 'f:1=<-' ix.io"
 alias ptree="ps xf -o pid,ppid,pgrp,euser,args"

@@ -4,6 +4,9 @@ export PATH=$HOME/.local/bin:$PATH
 # Add yarn binaries to path
 export PATH=$HOME/.yarn/bin:$PATH
 
+# Add go binaries to path
+export PATH=$HOME/go/bin:$PATH
+
 # Set fzf install directory
 export FZF_BASE=/opt/fzf
 

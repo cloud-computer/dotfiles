@@ -14,15 +14,17 @@
 
     co = checkout
     cob = checkout -b
-    cot = checkout --track
 
     c = commit --verbose
-    ca = commit -a --amend --verbose
+    ca = "!f() { export GIT_COMMITTER_DATE=\"$(git show -s --format=%ai HEAD)\"; git commit -a --amend --no-edit --verbose --date \"$GIT_COMMITTER_DATE\"; }; f"
+    caf = "!f() { git ca; git puf; }; f"
     cp = checkout -p HEAD
+    cpm = checkout -p master
     cm = commit -m
     cam = commit -a -m
     cmp = "!f() { git commit -m \"$1\"; git push; }; f"
     camp = "!f() { git commit -a -m \"$1\"; git push; }; f"
+    campn = "!f() { git commit -a -m \"$1\"; git push --no-verify; }; f"
 
     d = diff
     dashboard = "!f() { /usr/local/bin/grv -repoFilePath /stemn/stemn-backend \"$@\"; }; f"
@@ -30,16 +32,22 @@
     dbl = "!git diff --name-only $(git merge-base $(git branch | grep \\* | cut -d ' ' -f2) master) $(git branch | grep \\* | cut -d ' ' -f2)"
     ds = diff --stat
 
+    f = fetch --all
+
     # provide help by listing aliases
     h = "!git config -l | grep alias | cut -c 7-"
 
     l = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
     ll = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
-    lll = log --oneline --graph --all --decorate --abbrev-commit
 
-    p = "!git fetch; git pull --rebase"
-    pu = push
+    m = merge
+
+    p = pull
     pp = "!git pull --no-edit; git push"
+    pu = push
+    puf = push -f
+    pun = push --no-verify
+    puu = "!git push -u origin $(git branch | awk '/^\\* / { print $2 }')"
 
     # create a pull request. first argument is pull request name.
     pr = "!f() { \
@@ -97,7 +105,7 @@
     }; f"
 
 [push]
-    default = simple
+    default = current
 
 [core]
     safecrlf = false
@@ -128,3 +136,6 @@
 
 [diff]
     interHunkContext = 0
+[user]
+	email = jackson@stemn.com
+	name = Jackson Delahunt

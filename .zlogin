@@ -1,7 +1,5 @@
 # Print mesasge of the day
-echo
 ascii CLOUD COMPUTER
-echo
 
 # Print container build info if present
 if [ ! -z "$CONTAINER_BUILD_DATE" ]; then

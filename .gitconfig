@@ -136,3 +136,6 @@
 
 [diff]
     interHunkContext = 0
+[user]
+	email = jackson@stemn.com
+	name = Jackson Delahunt
